@@ -65,7 +65,7 @@ proof_any_pair a b = ((a + b) ** ((proof_l_e_add a b), (proof_l_e_add_r a b)))
 
 data n_d : (m : Nat) -> (n : Nat) -> Type where
     n_d_base : Not ((S m) = (S (S n))) -> l_e (S m) (S (S n)) -> n_d (S m) (S (S n))
-    n_d_custom : n_d (S m) (S (S n)) -> n_d ((S m) + (S n)) (S (S n))
+    n_d_custom : n_d (S m) (S (S n)) -> n_d ((S m) + (S (S n))) (S (S n))
 
 Uninhabited (n_d Z n) where
     uninhabited n_d_base impossible
