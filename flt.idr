@@ -67,10 +67,7 @@ inc {n} a = inc_fin n a
 
 -- Convertion without Maybe
 
-nat_to_fin : Nat -> (n : Nat) -> Fin (S n)
-nat_to_fin v Z = FZ
-nat_to_fin Z (S n) = FZ
-nat_to_fin (S v) (S n) = FS (nat_to_fin v n)
+--was bugged
 
 -- Sums numbers with same module
 
@@ -261,8 +258,3 @@ lemma_a_power_km n a k m p =
     rewrite p in
     rewrite power_of_one n m in
     Refl
-
--- Convertion properties
-
-n_to_fin_n : (n : Nat) -> FZ = nat_to_fin n n
-n_to_fin_n n = Refl
