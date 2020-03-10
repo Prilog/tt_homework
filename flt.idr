@@ -8,30 +8,30 @@ import Data.Fin
 
 -- Not Divides from last task
 
-data not_divides : Nat -> Nat -> Type where
-    not_divides_base : LT (S m) (S (S n)) -> not_divides (S m) (S (S n))
-    not_divides_custom : not_divides (S m) (S (S n)) -> not_divides ((S m) + (S (S n))) (S (S n))
+data Not_Divides : Nat -> Nat -> Type where
+    Not_Divides_base : LT (S m) (S (S n)) -> Not_Divides (S m) (S (S n))
+    Not_Divides_custom : Not_Divides (S m) (S (S n)) -> Not_Divides ((S m) + (S (S n))) (S (S n))
 
-Uninhabited (not_divides Z n) where
-    uninhabited not_divides_base impossible
+Uninhabited (Not_Divides Z n) where
+    uninhabited Not_Divides_base impossible
 
-Uninhabited (not_divides m Z) where
-    uninhabited not_divides_base impossible
+Uninhabited (Not_Divides m Z) where
+    uninhabited Not_Divides_base impossible
 
 -- Divides
 
-data divides : Nat -> Nat -> Type where
-    divides_base : (m : Nat) -> n = m * (S l) -> divides (S l) n
+data Divides : Nat -> Nat -> Type where
+    Divides_base : (m : Nat) -> n = m * (S l) -> Divides (S l) n
 
 -- Prime
 
-data prime : Nat -> Type where
-    prime_base : GT m 1 -> ((d : Nat) -> divides d m -> Either (d = 1) (d = m)) -> prime m
+data Prime : Nat -> Type where
+    Prime_base : GT m 1 -> ((d : Nat) -> Divides d m -> Either (d = 1) (d = m)) -> Prime m
 
 -- Coprime
 
-data coprime : Nat -> Nat -> Type where
-    coprime_base : (m : Nat) -> (n : Nat) -> ((d : Nat) -> divides d m -> Either (d = 1) (not_divides n d)) -> coprime m n
+data Coprime : Nat -> Nat -> Type where
+    Coprime_base : (m : Nat) -> (n : Nat) -> ((d : Nat) -> Divides d m -> Either (d = 1) (Not_Divides n d)) -> Coprime m n
 
 -- Some module operations
 
